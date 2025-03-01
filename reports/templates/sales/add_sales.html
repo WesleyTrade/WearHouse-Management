@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+  <div class="container">
+    <h2 class="mt-4">Add Sales</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">{{ form.shop.label_tag }} {{ form.shop }}</div>
+        <div class="col-md-6">{{ form.till_number.label_tag }} {{ form.till_number }}</div>
+        <div class="col-md-6">{{ form.cashier.label_tag }} {{ form.cashier }}</div>
+        <div class="col-md-6">{{ form.assistant_supervisor.label_tag }} {{ form.assistant_supervisor }}</div>
+        <div class="col-md-6">{{ form.z_reading.label_tag }} {{ form.z_reading }}</div>
+        <div class="col-md-6">{{ form.eftpos_sales.label_tag }} {{ form.eftpos_sales }}</div>
+        <div class="col-md-6">{{ form.overing.label_tag }} {{ form.overing }}</div>
+        <div class="col-md-6">{{ form.down.label_tag }} {{ form.down }}</div>
+        <div class="col-md-12">{{ form.memo.label_tag }} {{ form.memo }}</div>
+      </div>
+      <button type="submit" class="btn btn-success mt-3">Submit Sales</button>
+    </form>
+
+    <div class="mt-4">
+      <p><strong>Time recorded:</strong> - </p>
+      <p><strong>Cash sales:</strong> PGK 0.00</p>
+      <p><strong>Recorded by:</strong> {{ request.user.username }}</p>
+    </div>
+
+    <a href="{% url 'sales_list' %}" class="btn btn-secondary mt-3">Back to Sales</a>
+  </div>
+{% endblock %}

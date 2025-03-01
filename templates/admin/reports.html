@@ -1,0 +1,25 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}WearHouse Management System - Reports{% endblock %}
+
+{% block content %}
+<h1>{{ report_name }}</h1>
+
+<!-- ✅ Timeframe Selection Dropdown -->
+<form method="GET" action="{% url 'sales_report' %}">
+    <label for="timeframe"><strong>Select Timeframe:</strong></label>
+    <select name="timeframe" id="timeframe" onchange="this.form.submit()">
+        <option value="daily" {% if timeframe == "daily" %}selected{% endif %}>Yesterday</option>
+        <option value="weekly" {% if timeframe == "weekly" %}selected{% endif %}>This Weekly</option>
+        <option value="monthly" {% if timeframe == "monthly" %}selected{% endif %}>This Monthly</option>
+    </select>
+
+    <label for="custom_date"><strong>Or Select a Date:</strong></label>
+    <input type="date" name="custom_date" id="custom_date" onchange="this.form.submit()">
+</form>
+
+<!-- ✅ Display Report Value -->
+<p><strong>Report Value:</strong> {{ report_value|floatformat:2 }} PGK</p>
+
+<a href="{% url 'admin:index' %}">🔙 Back to Admin</a>
+{% endblock %}

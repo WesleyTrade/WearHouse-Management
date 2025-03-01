@@ -1,0 +1,102 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <div class="container">
+    <h2 class="mt-4">{{ report_name }}</h2>
+    
+    <!-- 🔽 Filter by Shop and Category -->
+    <form method="GET" class="row g-3 mb-4">
+      <div class="col-md-4">
+        <label for="shop" class="form-label">Filter by Shop:</label>
+        <select name="shop" id="shop" class="form-select">
+          <option value="">All Shops</option>
+          {% for shop in shops %}
+            <option value="{{ shop.id }}" {% if shop.id == selected_shop %}selected{% endif %}>{{ shop.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="category" class="form-label">Filter by Category:</label>
+        <select name="category" id="category" class="form-select">
+          <option value="">All Categories</option>
+          {% for category in categories %}
+            <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-primary mt-4">Filter</button>
+      </div>
+    </form>
+
+    <!-- 🔽 Inventory Report Table -->
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Product</th>
+          <th>Shop</th>
+          <th>Total Quantity</th>
+          <th>Total Value (PGK)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in inventory_data %}
+          <tr>
+            <td>{{ item.product__name }}</td>
+            <td>{{ item.shop__name }}</td>
+            <td>{{ item.total_quantity }}</td>
+            <td>PGK {{ item.total_value|floatformat:2 }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4" class="text-center">No inventory data available.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- 🔽 Display Summary -->
+    <div class="alert alert-info">
+      <h4>Summary</h4>
+      <p><strong>Total Stock:</strong> {{ total_stock }} units</p>
+      <p><strong>Total Inventory Value:</strong> PGK {{ total_inventory_value|floatformat:2 }}</p>
+    </div>
+
+    <!-- 🔽 Inventory Chart -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">📊 Inventory Overview</h5>
+        <canvas id="inventoryChart"></canvas>
+      </div>
+    </div>
+
+    <a href="/admin/" class="btn btn-secondary">🔙 Back to Admin</a>
+  </div>
+
+  <!-- 🔽 Chart.js (Bar Chart for Inventory Data) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    var ctx = document.getElementById('inventoryChart').getContext('2d');
+    var inventoryChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: {{ labels|safe }},  // ✅ Product Names
+        datasets: [{
+          label: 'Total Quantity',
+          data: {{ quantities|safe }},  // ✅ Product Quantities
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+{% endblock %}
