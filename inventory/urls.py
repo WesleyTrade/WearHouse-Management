@@ -1,8 +1,9 @@
+
 from django.urls import path
-from .views import generate_report
+from .views import home, generate_report  # ✅ Import home page view
 
 urlpatterns = [
-    path('reports/sales/', generate_report, name="sales_report"),  # ✅ Add correct API route
+    path("", home, name="home"),  # ✅ Home page URL
+    path("reports/sales/", generate_report, name="sales_report"),  # ✅ Sales report route
 ]
-
 

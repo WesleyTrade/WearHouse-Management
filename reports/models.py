@@ -1,7 +1,10 @@
 from django.db import models
-from inventory.models import Sales, Shop, Product  # Import related models
+from inventory.models import Sales, Shop  # ✅ Correct import
+from django.utils.timezone import now  
 
 class Report(models.Model):
+    """✅ Report Model to Track Sales & Inventory Reports"""
+    
     REPORT_TYPES = [
         ("sales", "Sales Report"),
         ("inventory", "Inventory Report"),
@@ -13,4 +16,3 @@ class Report(models.Model):
 
     def __str__(self):
         return f"{self.get_report_type_display()} - {self.created_at.strftime('%Y-%m-%d')}"
-

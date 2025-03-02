@@ -1,20 +1,48 @@
 {% extends "admin/base_site.html" %}
 
-{% block title %} Sales Report {% endblock %}
+{% block title %}Sales Report{% endblock %}
 
 {% block content %}
-<h1>{{ report_name }}</h1>
+<h1>TopTown Clothing - Sales Report</h1>
 
+<p><strong>WearHouse Management</strong></p>
+<p><strong>Report Date:</strong> {{ today_date }}</p>
+
+<!-- 🔹 Timeframe Selection -->
 <form method="GET" action="{% url 'sales_report' %}">
-    <label for="timeframe">Select Timeframe:</label>
+    <label for="timeframe"><strong>Select Timeframe:</strong></label>
     <select name="timeframe" id="timeframe" onchange="this.form.submit()">
-        <option value="daily" {% if timeframe == "daily" %}selected{% endif %}>Daily</option>
-        <option value="weekly" {% if timeframe == "weekly" %}selected{% endif %}>Weekly</option>
-        <option value="monthly" {% if timeframe == "monthly" %}selected{% endif %}>Monthly</option>
+        <option value="weekly" {% if timeframe == "weekly" %}selected{% endif %}>Last 7 Days</option>
+        <option value="monthly" {% if timeframe == "monthly" %}selected{% endif %}>Current Month</option>
     </select>
 </form>
 
-<p><strong>Report Value:</strong> {{ report_value|floatformat:2 }} PGK</p>
+<h2>Sales Report - {{ timeframe|title }}</h2>
 
+<!-- 🔹 Display Sales Data -->
+{% if sales_data %}
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Sales (PGK)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for label, value in sales_data %}
+            <tr>
+                <td>{{ label }}</td>
+                <td>{{ value|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><strong>Total Sales:</strong> PGK {{ total_sales|floatformat:2 }}</p>
+{% else %}
+    <p><strong>No sales data available for this period.</strong></p>
+{% endif %}
+
+<!-- 🔹 Back to Admin -->
 <a href="{% url 'admin:index' %}">🔙 Back to Admin</a>
+
 {% endblock %}

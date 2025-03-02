@@ -5,6 +5,11 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.views import View
 from .models import Shop, Supplier, Product, Inventory, Sales
+from django.shortcuts import render
+
+def home(request):
+    return render(request, "home.html")
+
 
 # ✅ **Homepage View to Fix 404 Error**
 def home_view(request):
