@@ -24,7 +24,8 @@ class Shop(models.Model):
 # ✅ Sales Model (Only Defined Here)
 class Sales(models.Model):
     """✅ Sales Model with Auto-Calculated Cash Sales"""
-    
+    class Meta:
+        verbose_name_plural = "Sales"  # ✅ Fix incorrect spelling
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE, related_name="sales")  # ✅ Fix reverse accessor clash
     date_recorded = models.DateField(default=now)
     till_number = models.CharField(max_length=20, blank=True, null=True)

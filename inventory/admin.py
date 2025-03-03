@@ -1,6 +1,12 @@
 from django.contrib import admin
-from inventory.models import Sales, Shop
+from inventory.models import Sales, Inventory, Product, Shop, 
 from .models import Product, Inventory  # ✅ Import models
+from import_export.admin import ExportMixin
+from import_export.resources import ModelResource
+
+class SalesResource(ModelResource):
+    class Meta:
+        model = Sales
 
 # ✅ Register Product
 @admin.register(Product)
@@ -16,8 +22,9 @@ class InventoryAdmin(admin.ModelAdmin):
     search_fields = ("shop__name", "product__name")
     list_filter = ("shop", "date_added")
 
-
-class SalesAdmin(admin.ModelAdmin):
+@admin.register(Sales)
+class SalesAdmin(ExportMixin, admin.ModelAdmin):
+    resource_class = SalesResource
     """✅ Custom Admin View for Sales with Currency Formatting"""
 
     list_display = (
@@ -26,6 +33,8 @@ class SalesAdmin(admin.ModelAdmin):
         "formatted_overing", "formatted_down", "formatted_cash_sales", "recorded_by"
     )
 
+    search_fields = ("shop__name", "date_recorded")
+    list_filter = ("shop", "date_recorded")
     readonly_fields = ("formatted_cash_sales", "time_recorded")
 
     # ✅ Format currency fields in Admin Panel
@@ -49,5 +58,6 @@ class SalesAdmin(admin.ModelAdmin):
         return f"K{obj.cash_sales:,.2f}"
     formatted_cash_sales.short_description = "Cash Sales"
 
-admin.site.register(Sales, SalesAdmin)
+admin.site.register(Inventory)
+admin.site.register(Product)
 admin.site.register(Shop)
