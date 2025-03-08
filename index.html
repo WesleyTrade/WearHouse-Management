@@ -7,85 +7,82 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7fa;
+            background-color: #f9fafb;
             color: #333;
-            text-align: center;
-            margin-top: 50px;
+            margin: 0;
+            padding: 0;
         }
 
-        .container {
-            max-width: 600px;
+        header {
+            background-color: #2a9df4;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
             margin: auto;
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
+            margin: 10px 0;
         }
 
-        p {
-            font-size: 1.2em;
-            color: #666;
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        .links {
-            margin-top: 30px;
-        }
-
-        .links a {
+        nav a {
+            background-color: #ffffff;
+            padding: 10px 15px;
             text-decoration: none;
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background-color: #2a9df4;
-            color: #ffffff;
             border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        .links a:hover {
-            background-color: #238ad1;
-        }
-
-        .emoji {
-            font-size: 2em;
-        }
-
-        .header-actions {
-            margin-top: 15px;
-            font-size: 0.9em;
-        }
-
-        .header-actions a {
             color: #2a9df4;
-            margin: 0 5px;
-            text-decoration: none;
+            border: 1px solid #2a9df4;
+            transition: all 0.3s ease;
         }
 
-        .header-actions a:hover {
-            text-decoration: underline;
+        nav a:hover {
+            background-color: #2a9df4;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1><span class="emoji">📦</span> Welcome, Wesley</h1>
-        <p>Manage your inventory and track sales with ease.</p>
-        <div class="links">
-            <a href="/admin/"><span class="emoji">🔑</span> Admin</a>
-            <a href="/reports/sales/"><span class="emoji">📊</span> Sales Reports</a>
-            <a href="/reports/inventory/"><span class="emoji">📦</span> Inventory Reports</a>
-            <a href="/products/"><span class="emoji">🛍️</span> Product Page</a>
-        </div>
-        <div class="header-actions">
-            <a href="/">View site</a> |
-            <a href="/admin/password_change/">Change password</a> |
-            <a href="/admin/logout/">Log out</a>
-        </div>
-    </div>
+
+<header>
+    <h1>📦 Welcome, Wesley</h1>
+    <p>WearHouse Management System</p>
+</header>
+
+<main>
+    <nav>
+        <a href="/admin/">🔑 Admin Dashboard</a>
+        <a href="/reports/sales/">📊 Sales Reports</a>
+        <a href="/reports/inventory/">📦 Inventory Reports</a>
+        <a href="/products/">🛍️ Product Page</a>
+        <a href="/inventory/">📚 Inventory Page</a>
+        <a href="/admin/password_change/">⚙️ Change Password</a>
+        <a href="/admin/logout/">🚪 Logout</a>
+    </nav>
+</main>
+
+<footer>
+    WearHouse Management System &copy; 2025
+</footer>
+
 </body>
 </html>
