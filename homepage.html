@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WearHouse Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: auto;
+            color: black;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .date-time {
+            font-size: 14px;
+            color: #555;
+            margin-top: 15px;
+        }
+        .table-container {
+            margin-top: 30px;
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📦 Welcome to WearHouse Management System</h1>
+        <p>Manage your inventory and track sales with ease.</p>
+
+        <a href="/admin/" class="btn">🔑 Go to Admin</a>
+        <a href="/reports/sales/" class="btn">📊 Sales Reports</a>
+        <a href="/reports/inventory/" class="btn">📦 Inventory Reports</a>
+
+        <p class="date-time" id="date-time"></p>
+    </div>
+
+    <!-- 📦 Inventory List -->
+    <div class="table-container">
+        <h2>📦 Inventory List</h2>
+        <table>
+            <tr>
+                <th>Shop</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Date Added</th>
+            </tr>
+            {% for item in inventory %}
+            <tr>
+                <td>{{ item.shop.name }}</td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantities }}</td>
+                <td>{{ item.date_added }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">No inventory data available.</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- 🏷️ Product List -->
+    <div class="table-container">
+        <h2>🏷️ Product List</h2>
+        <table>
+            <tr>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>Price (PGK)</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.supplier.name }}</td>
+                <td>K{{ product.unit_price }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">No product data available.</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <script>
+        // ✅ Display Current Date and Time
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById("date-time").innerText = 
+                `📅 ${now.toLocaleDateString()} | ⏰ ${now.toLocaleTimeString()}`;
+        }
+        setInterval(updateDateTime, 1000); // Refresh every second
+        updateDateTime();  // Initial call
+    </script>
+
+</body>
+</html>
