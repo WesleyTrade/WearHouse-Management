@@ -30,30 +30,18 @@
         p {
             font-size: 1.2em;
             color: #666;
+            margin-bottom: 20px;
         }
 
-        .links {
-            margin-top: 30px;
-        }
-
-        .links a {
+        .nav-links a {
             text-decoration: none;
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background-color: #2a9df4;
-            color: #ffffff;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
+            color: #2a9df4;
+            font-size: 1.1em;
+            margin: 0 10px;
         }
 
-        .links a:hover {
-            background-color: #238ad1;
-        }
-
-        .emoji {
-            font-size: 1.5em;
-            margin-right: 5px;
+        .nav-links a:hover {
+            text-decoration: underline;
         }
 
         .footer-links {
@@ -74,13 +62,13 @@
 </head>
 <body>
     <div class="container">
-        <h1><span class="emoji">📦</span> Welcome, Wesley</h1>
+        <h1>📦 Welcome, Wesley</h1>
         <p>Manage your inventory and track sales with ease.</p>
-        <div class="links">
-            <a href="/admin/"><span class="emoji">🔑</span>Admin</a>
-            <a href="/reports/sales/"><span class="emoji">📊</span>Sales Reports</a>
-            <a href="/reports/inventory/"><span class="emoji">📦</span>Inventory Reports</a>
-            <a href="/products/"><span class="emoji">🛍️</span>Product Page</a>
+        <div class="nav-links">
+            <a href="/admin/">🔑 Admin</a>
+            <a href="/reports/sales/">📊 Sales Reports</a>
+            <a href="/reports/inventory/">📦 Inventory Reports</a>
+            <a href="/products/">🛍️ Product Page</a>
         </div>
         <div class="footer-links">
             <a href="/">View site</a> |
