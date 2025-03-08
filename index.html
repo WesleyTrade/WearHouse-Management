@@ -3,10 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WearHouse Management</title>
+    <title>WearHouse Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .links {
+            margin-top: 30px;
+        }
+
+        .links a {
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #2a9df4;
+            color: #ffffff;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .links a:hover {
+            background-color: #238ad1;
+        }
+
+        .emoji {
+            font-size: 2em;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to WearHouse Management</h1>
-    <p>This is the landing page for the WearHouse Management system.</p>
+    <div class="container">
+        <h1><span class="emoji">📦</span> Welcome to WearHouse Management System</h1>
+        <p>Manage your inventory and track sales with ease.</p>
+        <div class="links">
+            <a href="/admin/"><span class="emoji">🔑</span> Go to Admin</a>
+            <a href="/reports/sales/"><span class="emoji">📊</span> Sales Reports</a>
+            <a href="/reports/inventory/"><span class="emoji">📦</span> Inventory Reports</a>
+        </div>
+    </div>
 </body>
 </html>
