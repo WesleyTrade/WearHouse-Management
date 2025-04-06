@@ -1,5 +1,5 @@
 from django.contrib import admin
-from inventory.models import Sales, Inventory, Product, Shop, 
+from inventory.models import Sales, Inventory, Product, Shop 
 from .models import Product, Inventory  # ✅ Import models
 from import_export.admin import ExportMixin
 from import_export.resources import ModelResource
@@ -58,6 +58,5 @@ class SalesAdmin(ExportMixin, admin.ModelAdmin):
         return f"K{obj.cash_sales:,.2f}"
     formatted_cash_sales.short_description = "Cash Sales"
 
-admin.site.register(Inventory)
-admin.site.register(Product)
+
 admin.site.register(Shop)
